@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LinkItem from "./LinkItem";
-import Loader from "react-loader-spinner"
+import Loader from "react-loader-spinner";
 
 const BrokenLinks = (props) => {
 	const [brknlinks, setBrknLiks] = useState([""]);
@@ -11,7 +11,7 @@ const BrokenLinks = (props) => {
 		async function fetchAll() {
 			await Promise.all(
 				props.links.map((url) =>
-					fetch(url)
+					fetch(`https://mycorsproxy-mahesh.herokuapp.com/${url}`)
 						.then((r) => {
 							if (r.status > 300) {
 								bl.push(url);
@@ -35,7 +35,10 @@ const BrokenLinks = (props) => {
 			<div className="card-body">
 				<h5 className="card-title">Broken {props.name} links</h5>
 				{fetchprogress ? (
-					<div style={{display:"flex",justifyContent:"center"}}><p style={{margin:"0 10px 0 0"}}>Checking for Broken Links</p><Loader type="BallTriangle" color="black" height="25px" width="25px" /></div>
+					<div style={{ display: "flex", justifyContent: "center" }}>
+						<p style={{ margin: "0 10px 0 0" }}>Checking for Broken Links</p>
+						<Loader type="BallTriangle" color="black" height="25px" width="25px" />
+					</div>
 				) : brknlinks.length !== 0 ? (
 					brknlinks.map((link) => {
 						a++;
