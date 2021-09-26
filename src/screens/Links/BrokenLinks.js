@@ -29,6 +29,7 @@ const BrokenLinks = (props) => {
 		}
 		fetchAll();
 	}, [props.links]);
+
 	let a = 0;
 	return (
 		<div className="card" style={{ margin: "10px" }}>
